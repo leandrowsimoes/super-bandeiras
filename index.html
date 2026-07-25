@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Super Bandeiras!</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="bandeiras/br.png">
+</head>
+<body>
+  <div class="cenario" aria-hidden="true">
+    <span class="sol"></span><span class="nuvem nuvem-a"></span><span class="nuvem nuvem-b"></span>
+    <span class="morro morro-a"></span><span class="morro morro-b"></span>
+  </div>
+  <div class="controles-topo">
+    <button id="btn-musica" class="btn-icone" type="button" aria-label="Ligar ou desligar a música">🎵</button>
+    <button id="btn-som" class="btn-icone" type="button" aria-label="Ligar ou desligar os efeitos de som">🔊</button>
+  </div>
+  <main class="palco">
+    <section id="tela-inicio" class="tela tela-inicio">
+      <div class="mascote" aria-hidden="true"><div class="globo"><span class="continente continente-a"></span><span class="continente continente-b"></span><span class="olho olho-a"></span><span class="olho olho-b"></span><span class="sorriso"></span></div><span class="capa"></span></div>
+      <p class="sobretitulo">Uma aventura pelo mundo</p>
+      <h1>Super <span>Bandeiras!</span></h1>
+      <p class="chamada">Descubra o país de cada bandeira e torne-se um superexplorador!</p>
+      <div class="niveis" aria-label="Escolha a dificuldade">
+        <button class="btn-nivel nivel-facil" type="button" data-nivel="facil"><span class="nivel-emoji">🌱</span><span class="nivel-textos"><strong>Fácil</strong><small>Países bem famosos</small></span><span class="nivel-recorde" data-recorde="facil"></span></button>
+        <button class="btn-nivel nivel-medio" type="button" data-nivel="medio"><span class="nivel-emoji">🌍</span><span class="nivel-textos"><strong>Médio</strong><small>Para viajantes espertos</small></span><span class="nivel-recorde" data-recorde="medio"></span></button>
+        <button class="btn-nivel nivel-dificil" type="button" data-nivel="dificil"><span class="nivel-emoji">🌋</span><span class="nivel-textos"><strong>Difícil</strong><small>Exploradores corajosos</small></span><span class="nivel-recorde" data-recorde="dificil"></span></button>
+        <button class="btn-nivel nivel-impossivel" type="button" data-nivel="impossivel"><span class="nivel-emoji">👽</span><span class="nivel-textos"><strong>Impossível</strong><small>Só para supergênios</small></span><span class="nivel-recorde" data-recorde="impossivel"></span></button>
+      </div>
+    </section>
+    <section id="tela-jogo" class="tela" hidden>
+      <div class="barra"><button id="btn-inicio" class="btn-icone" type="button" aria-label="Voltar ao início">🏠</button><span id="selo-nivel" class="selo-nivel"></span><div class="placar-area"><span id="placar" class="placar">⭐ 0</span><span id="selo-combo" class="selo-combo" hidden>🔥 x2</span></div></div>
+      <div id="progresso" class="progresso" aria-hidden="true"></div><p id="contador" class="contador">Bandeira 1 de 10</p>
+      <div class="carta carta-jogo"><div class="quadro-bandeira"><img id="img-bandeira" src="" alt="Bandeira misteriosa"><div id="carimbo" class="carimbo" hidden></div></div><div id="barra-bonus" class="barra-bonus" aria-hidden="true"><span id="barra-bonus-fill" class="barra-bonus-fill"></span></div><h2 class="pergunta">De qual país é esta bandeira?</h2><p id="aviso" class="aviso" aria-live="polite">&nbsp;</p><div id="respostas" class="respostas"></div></div>
+    </section>
+    <section id="tela-fim" class="tela" hidden>
+      <div class="carta carta-fim"><div id="medalha" class="medalha" aria-hidden="true">🏆</div><h2 id="titulo-fim" class="titulo-fim">Arrasou!</h2><div id="estrelas" class="estrelas" aria-hidden="true"><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span></div><p id="placar-final" class="placar-final"></p><p id="novo-recorde" class="novo-recorde" hidden>🎉 Novo recorde!</p><div class="acoes"><button id="btn-de-novo" class="btn-grande" type="button">Jogar de novo</button><button id="btn-mudar" class="btn-grande btn-claro" type="button">Mudar nível</button></div></div>
+    </section>
+  </main>
+  <script src="js/paises.js"></script><script src="js/musica.js"></script><script src="js/jogo.js"></script>
+</body>
+</html>
