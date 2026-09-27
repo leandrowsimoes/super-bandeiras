@@ -10,6 +10,7 @@
 <body>
   <div class="cenario" aria-hidden="true">
     <span class="sol"></span><span class="nuvem nuvem-a"></span><span class="nuvem nuvem-b"></span>
+    <span class="aviao-faixa"><span class="aviao">✈️</span><span class="faixa-aviao">Super Bandeiras!</span></span>
     <span class="morro morro-a"></span><span class="morro morro-b"></span>
   </div>
   <div class="controles-topo">
@@ -17,11 +18,28 @@
     <button id="btn-som" class="btn-icone" type="button" aria-label="Ligar ou desligar os efeitos de som">🔊</button>
   </div>
   <main class="palco">
-    <section id="tela-inicio" class="tela tela-inicio">
+
+    <!-- ========== Início ========== -->
+    <section id="tela-inicio" class="tela tela-inicio" hidden>
       <div class="mascote" aria-hidden="true"><div class="globo"><span class="continente continente-a"></span><span class="continente continente-b"></span><span class="olho olho-a"></span><span class="olho olho-b"></span><span class="sorriso"></span></div><span class="capa"></span></div>
       <p class="sobretitulo">Uma aventura pelo mundo</p>
       <h1>Super <span>Bandeiras!</span></h1>
-      <p class="chamada">Descubra o país de cada bandeira e torne-se um superexplorador!</p>
+      <div class="modos">
+        <button class="btn-modo modo-mapa" type="button" data-ir="mapa"><span class="modo-emoji">🗺️</span><span class="modo-textos"><strong>Aventura</strong><small>Viaje pelos continentes</small></span></button>
+        <button class="btn-modo modo-quiz" type="button" data-ir="niveis"><span class="modo-emoji">🚩</span><span class="modo-textos"><strong>Quiz Livre</strong><small>Escolha o nível</small></span></button>
+        <button class="btn-modo modo-passaporte" type="button" data-ir="passaporte"><span class="modo-emoji">📘</span><span class="modo-textos"><strong>Passaporte</strong><small id="resumo-carimbos">0 carimbos</small></span></button>
+        <button class="btn-modo modo-minijogos" type="button" data-ir="minijogos"><span class="modo-emoji">🎲</span><span class="modo-textos"><strong>Minijogos</strong><small>Memória e Relâmpago</small></span></button>
+      </div>
+      <button id="btn-pequeno" class="interruptor" type="button" role="switch" aria-checked="false"><span class="interruptor-emoji">🐣</span><span class="interruptor-textos"><strong>Pequeno Explorador</strong><small>Eu leio tudo para você, com 3 opções e sem pressa</small></span><span class="interruptor-trilho"><span class="interruptor-bolinha"></span></span><span class="interruptor-estado">Desligado</span></button>
+    </section>
+
+    <!-- ========== Quiz Livre: níveis ========== -->
+    <section id="tela-niveis" class="tela" hidden>
+      <div class="barra barra-simples"><button class="btn-icone" type="button" data-voltar-inicio aria-label="Voltar ao início">🏠</button><h2 class="barra-titulo">🚩 Quiz Livre</h2></div>
+      <div class="seletor-modo" role="group" aria-label="Tipo de pergunta">
+        <button type="button" class="btn-seletor" data-modo="pais">🚩 ➜ 🔤<small>Adivinhe o país</small></button>
+        <button type="button" class="btn-seletor" data-modo="bandeira">🔤 ➜ 🚩<small>Ache a bandeira</small></button>
+      </div>
       <div class="niveis" aria-label="Escolha a dificuldade">
         <button class="btn-nivel nivel-facil" type="button" data-nivel="facil"><span class="nivel-emoji">🌱</span><span class="nivel-textos"><strong>Fácil</strong><small>Países bem famosos</small></span><span class="nivel-recorde" data-recorde="facil"></span></button>
         <button class="btn-nivel nivel-medio" type="button" data-nivel="medio"><span class="nivel-emoji">🌍</span><span class="nivel-textos"><strong>Médio</strong><small>Para viajantes espertos</small></span><span class="nivel-recorde" data-recorde="medio"></span></button>
@@ -29,15 +47,133 @@
         <button class="btn-nivel nivel-impossivel" type="button" data-nivel="impossivel"><span class="nivel-emoji">👽</span><span class="nivel-textos"><strong>Impossível</strong><small>Só para supergênios</small></span><span class="nivel-recorde" data-recorde="impossivel"></span></button>
       </div>
     </section>
-    <section id="tela-jogo" class="tela" hidden>
-      <div class="barra"><button id="btn-inicio" class="btn-icone" type="button" aria-label="Voltar ao início">🏠</button><span id="selo-nivel" class="selo-nivel"></span><div class="placar-area"><span id="placar" class="placar">⭐ 0</span><span id="selo-combo" class="selo-combo" hidden>🔥 x2</span></div></div>
+
+    <!-- ========== Partida ========== -->
+    <section id="tela-jogo" class="tela" data-musica="jogo" hidden>
+      <div class="barra"><button id="btn-inicio" class="btn-icone" type="button" aria-label="Sair da partida">🏠</button><span id="selo-nivel" class="selo-nivel"></span><div class="placar-area"><span id="placar" class="placar">⭐ 0</span><span id="selo-combo" class="selo-combo" hidden>🔥 x2</span></div></div>
       <div id="progresso" class="progresso" aria-hidden="true"></div><p id="contador" class="contador">Bandeira 1 de 10</p>
-      <div class="carta carta-jogo"><div class="quadro-bandeira"><img id="img-bandeira" src="" alt="Bandeira misteriosa"><div id="carimbo" class="carimbo" hidden></div></div><div id="barra-bonus" class="barra-bonus" aria-hidden="true"><span id="barra-bonus-fill" class="barra-bonus-fill"></span></div><h2 class="pergunta">De qual país é esta bandeira?</h2><p id="aviso" class="aviso" aria-live="polite">&nbsp;</p><div id="respostas" class="respostas"></div></div>
+      <div id="carta-jogo" class="carta carta-jogo">
+        <div id="quadro-bandeira" class="quadro-bandeira">
+          <div id="mastro" class="mastro"><img id="img-bandeira" src="" alt="Bandeira misteriosa"></div>
+          <p id="nome-alvo" class="nome-alvo" hidden></p>
+          <div id="dica-continente" class="dica-continente" hidden></div>
+          <div id="carimbo" class="carimbo" hidden></div>
+        </div>
+        <div id="barra-bonus" class="barra-bonus" aria-hidden="true"><span id="barra-bonus-fill" class="barra-bonus-fill"></span></div>
+        <h2 id="pergunta" class="pergunta">De qual país é esta bandeira?</h2>
+        <div class="fala-mascote">
+          <div id="mascote-jogo" class="mascote-mini" aria-hidden="true"><div class="mascote"><div class="globo"><span class="continente continente-a"></span><span class="continente continente-b"></span><span class="olho olho-a"></span><span class="olho olho-b"></span><span class="sorriso"></span></div><span class="capa"></span></div></div>
+          <p id="aviso" class="aviso balao" aria-live="polite">Qual será?</p>
+          <div class="ajudas">
+            <button id="btn-lupa" class="btn-ajuda" type="button" aria-label="Lupa: tira respostas erradas">🔍<b>1</b></button>
+            <button id="btn-dica" class="btn-ajuda" type="button" aria-label="Dica: mostra o continente">🗺️<b>1</b></button>
+          </div>
+        </div>
+        <div id="respostas" class="respostas"></div>
+        <div id="curiosidade" class="curiosidade" hidden>
+          <img id="curiosidade-bandeira" class="curiosidade-bandeira" src="" alt="">
+          <div class="curiosidade-textos"><strong id="curiosidade-nome"></strong><small id="curiosidade-capital"></small><p id="curiosidade-texto"></p></div>
+          <button id="btn-proxima" class="btn-grande btn-proxima" type="button">Próxima ➜</button>
+        </div>
+      </div>
     </section>
+
+    <!-- ========== Resultado ========== -->
     <section id="tela-fim" class="tela" hidden>
-      <div class="carta carta-fim"><div id="medalha" class="medalha" aria-hidden="true">🏆</div><h2 id="titulo-fim" class="titulo-fim">Arrasou!</h2><div id="estrelas" class="estrelas" aria-hidden="true"><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span></div><p id="placar-final" class="placar-final"></p><p id="novo-recorde" class="novo-recorde" hidden>🎉 Novo recorde!</p><div class="acoes"><button id="btn-de-novo" class="btn-grande" type="button">Jogar de novo</button><button id="btn-mudar" class="btn-grande btn-claro" type="button">Mudar nível</button></div></div>
+      <div class="carta carta-fim">
+        <div id="medalha" class="medalha" aria-hidden="true">🏆</div>
+        <h2 id="titulo-fim" class="titulo-fim">Arrasou!</h2>
+        <div id="estrelas" class="estrelas" role="img" aria-label="0 de 3 estrelas"><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span></div>
+        <p id="pontos-final" class="pontos-final" hidden>0</p>
+        <p id="placar-final" class="placar-final"></p>
+        <p id="novo-recorde" class="novo-recorde" hidden>🎉 Novo recorde!</p>
+        <div id="carimbos-novos" class="carimbos-novos" hidden><p id="carimbos-novos-texto"></p><div id="carimbos-novos-lista" class="carimbos-novos-lista"></div></div>
+        <div class="acoes"><button id="btn-de-novo" class="btn-grande" type="button">Jogar de novo</button><button id="btn-mudar" class="btn-grande btn-claro" type="button">Voltar</button></div>
+      </div>
+    </section>
+
+    <!-- ========== Mapa de Aventura ========== -->
+    <section id="tela-mapa" class="tela" hidden>
+      <div class="barra barra-simples"><button class="btn-icone" type="button" data-voltar-inicio aria-label="Voltar ao início">🏠</button><h2 class="barra-titulo">🗺️ Aventura</h2><span id="mapa-estrelas" class="placar">⭐ 0</span></div>
+      <div id="mapa-lista" class="mapa-lista"></div>
+    </section>
+
+    <!-- ========== Passaporte ========== -->
+    <section id="tela-passaporte" class="tela" hidden>
+      <div class="barra barra-simples"><button class="btn-icone" type="button" data-voltar-inicio aria-label="Voltar ao início">🏠</button><h2 class="barra-titulo">📘 Meu Passaporte</h2></div>
+      <div class="passaporte-capa">
+        <p id="passaporte-contagem" class="passaporte-contagem">0 carimbos</p>
+        <div class="passaporte-barra" aria-hidden="true"><span id="passaporte-barra-fill" class="passaporte-barra-fill"></span></div>
+        <div class="abas" role="tablist">
+          <button type="button" class="aba-passaporte" role="tab" data-aba="carimbos">🌍 Carimbos</button>
+          <button type="button" class="aba-passaporte" role="tab" data-aba="conquistas">🏅 Conquistas</button>
+        </div>
+      </div>
+      <div id="passaporte-conteudo" class="passaporte-conteudo"></div>
+    </section>
+
+    <!-- ========== Minijogos ========== -->
+    <section id="tela-minijogos" class="tela" hidden>
+      <div class="barra barra-simples"><button class="btn-icone" type="button" data-voltar-inicio aria-label="Voltar ao início">🏠</button><h2 class="barra-titulo">🎲 Minijogos</h2></div>
+      <div class="lista-minijogos">
+        <button id="btn-memoria" class="btn-minijogo minijogo-memoria" type="button"><span class="minijogo-emoji">🧠</span><strong>Memória</strong><small>Ache os pares de bandeira e nome</small><span id="recorde-memoria" class="minijogo-recorde"></span></button>
+        <button id="btn-relampago" class="btn-minijogo minijogo-relampago" type="button"><span class="minijogo-emoji">⚡</span><strong>Relâmpago</strong><small>Sim ou não? Responda rapidinho!</small><span id="recorde-relampago" class="minijogo-recorde"></span></button>
+      </div>
+    </section>
+
+    <!-- ========== Memória ========== -->
+    <section id="tela-memoria" class="tela" data-musica="jogo" hidden>
+      <div class="barra"><button id="btn-memoria-voltar" class="btn-icone" type="button" aria-label="Sair do jogo da memória">🏠</button><span class="selo-nivel">🧠 Memória</span><div class="placar-area"><span id="memoria-pares" class="placar">✅ 0</span><span id="memoria-jogadas" class="placar">👆 0</span></div></div>
+      <div id="memoria-grade" class="memoria-grade"></div>
+    </section>
+
+    <!-- ========== Relâmpago ========== -->
+    <section id="tela-relampago" class="tela" data-musica="jogo" hidden>
+      <div class="barra"><button id="btn-relampago-voltar" class="btn-icone" type="button" aria-label="Sair do Relâmpago">🏠</button><span class="selo-nivel">⚡ Relâmpago</span><div class="placar-area"><span id="relampago-placar" class="placar">⚡ 0</span><span id="relampago-tempo" class="placar">⏱️ 45</span></div></div>
+      <div class="barra-bonus barra-tempo" aria-hidden="true"><span id="relampago-barra-fill" class="barra-bonus-fill"></span></div>
+      <div id="relampago-carta" class="carta carta-relampago">
+        <div class="quadro-bandeira"><img id="relampago-bandeira" src="" alt="Bandeira misteriosa"></div>
+        <p class="pergunta-relampago">Esta é a bandeira de…</p>
+        <p id="relampago-nome" class="nome-relampago"></p>
+        <p id="relampago-aviso" class="aviso" aria-live="polite">&nbsp;</p>
+        <div class="botoes-relampago">
+          <button id="btn-sim" class="btn-grande btn-sim" type="button">✔️ Sim</button>
+          <button id="btn-nao" class="btn-grande btn-nao" type="button">❌ Não</button>
+        </div>
+      </div>
     </section>
   </main>
-  <script src="js/paises.js"></script><script src="js/musica.js"></script><script src="js/jogo.js"></script>
+
+  <!-- Cartão do país (passaporte) -->
+  <div id="cartao-pais" class="cartao-fundo" hidden>
+    <div class="cartao-pais" role="dialog" aria-modal="true" aria-labelledby="cartao-nome">
+      <button id="btn-cartao-fechar" class="btn-icone btn-fechar" type="button" aria-label="Fechar">✕</button>
+      <img id="cartao-bandeira" class="cartao-bandeira" src="" alt="">
+      <h2 id="cartao-nome" class="cartao-nome"></h2>
+      <p id="cartao-capital" class="cartao-capital"></p>
+      <p id="cartao-texto" class="cartao-texto"></p>
+      <button id="btn-cartao-ouvir" class="btn-grande" type="button">🔊 Ouvir</button>
+    </div>
+  </div>
+
+  <div id="faixas" class="faixas" aria-live="polite"></div>
+  <canvas id="efeitos" class="efeitos" aria-hidden="true"></canvas>
+  <div id="transicao" class="transicao" aria-hidden="true"><span class="nuvem-cortina c1"></span><span class="nuvem-cortina c2"></span><span class="nuvem-cortina c3"></span><span class="nuvem-cortina c4"></span><span class="nuvem-cortina c5"></span></div>
+
+  <script src="js/paises.js"></script>
+  <script src="js/curiosidades.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/musica.js"></script>
+  <script src="js/voz.js"></script>
+  <script src="js/efeitos.js"></script>
+  <script src="js/progresso.js"></script>
+  <script src="js/telas.js"></script>
+  <script src="js/resultado.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/passaporte.js"></script>
+  <script src="js/memoria.js"></script>
+  <script src="js/relampago.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

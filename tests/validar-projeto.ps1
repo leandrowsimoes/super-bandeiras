@@ -5,8 +5,20 @@ $required = @(
     'index.html',
     'css\estilo.css',
     'js\paises.js',
+    'js\curiosidades.js',
+    'js\audio.js',
     'js\musica.js',
-    'js\jogo.js',
+    'js\voz.js',
+    'js\efeitos.js',
+    'js\progresso.js',
+    'js\telas.js',
+    'js\resultado.js',
+    'js\quiz.js',
+    'js\mapa.js',
+    'js\passaporte.js',
+    'js\memoria.js',
+    'js\relampago.js',
+    'js\app.js',
     'fontes\fredoka.woff2',
     'fontes\nunito.woff2'
 )
@@ -36,6 +48,16 @@ $missingFlags = $codes | Where-Object {
 }
 if ($missingFlags) {
     throw "Bandeiras ausentes: $($missingFlags -join ', ')"
+}
+
+# Cada país precisa de continente e capital para dicas, mapa e passaporte.
+$infoSource = Get-Content -Raw -LiteralPath (Join-Path $root 'js\curiosidades.js')
+$infoCodes = [regex]::Matches($infoSource, '(?m)^\s+([a-z]{2}):\s*\{\s*continente:\s*"(america|europa|africa|asia|oceania)",\s*capital:\s*"[^"]+"') | ForEach-Object {
+    $_.Groups[1].Value
+}
+$semInfo = $codes | Where-Object { $infoCodes -notcontains $_ }
+if ($semInfo -or $infoCodes.Count -ne 163) {
+    throw "Informações de país ausentes ou inválidas: $($semInfo -join ', ') (encontradas $($infoCodes.Count))."
 }
 
 Write-Output 'OK: estrutura e 163 bandeiras validadas.'

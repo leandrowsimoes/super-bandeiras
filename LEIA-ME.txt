@@ -4,24 +4,48 @@
 COMO JOGAR
 ----------
 1. Dê dois cliques em "index.html".
-2. Escolha: Fácil, Médio, Difícil ou Impossível.
-3. Observe a bandeira e escolha o país certo.
-4. Cada partida tem 10 perguntas sorteadas.
+2. Escolha um modo na tela inicial:
+   🗺️ Aventura ..... viaje pelos 5 continentes, fase por fase.
+   🚩 Quiz Livre ... escolha o nível (Fácil, Médio, Difícil ou Impossível)
+                     e o tipo de pergunta: "Adivinhe o país" ou
+                     "Ache a bandeira".
+   📘 Passaporte ... veja os carimbos dos países que você já acertou
+                     e as suas conquistas.
+   🎲 Minijogos .... Memória (pares de bandeira e nome) e
+                     Relâmpago (sim ou não, contra o relógio).
+
+PEQUENO EXPLORADOR 🐣
+---------------------
+Para quem ainda está aprendendo a ler (6 e 7 anos). Ligue o
+interruptor na tela inicial e o jogo passa a:
+- ler a pergunta e as opções em voz alta;
+- mostrar só 3 opções;
+- não ter barra de tempo;
+- dar uma segunda chance quando a criança erra.
+
+DURANTE A PARTIDA
+-----------------
+- Responder rápido dá bônus; acertos seguidos fazem combo 🔥.
+- 🔍 Lupa tira respostas erradas. 🗺️ Dica mostra o continente.
+  Cada rodada começa com uma de cada; combo de 3 ganha outra Lupa.
+- Depois de cada resposta aparece uma curiosidade sobre o país.
+- Todo acerto vira um carimbo no passaporte.
 
 RECURSOS
 --------
 - Funciona totalmente sem internet.
-- Salva o melhor resultado de cada nível neste navegador.
+- Salva recordes, carimbos, conquistas e o progresso do mapa
+  neste navegador.
 - 🎵 liga ou desliga a música.
-- 🔊 liga ou desliga efeitos e leitura dos países.
-- Passe o mouse ou use Tab sobre uma resposta para ouvir o nome.
-- As teclas 1, 2, 3 e 4 escolhem as alternativas.
+- 🔊 liga ou desliga efeitos e leitura em voz alta.
+- As teclas 1, 2, 3 e 4 escolhem as alternativas; Enter avança.
+- No Relâmpago: tecla 1 (ou S) = Sim, tecla 2 (ou N) = Não.
 - O visual se adapta a celulares e computadores.
 - Animações são reduzidas quando essa preferência está ativa no sistema.
 
 ATALHOS
 -------
-Abra diretamente um nível adicionando à URL:
+Abra diretamente um nível do Quiz Livre adicionando à URL:
 - index.html?nivel=facil
 - index.html?nivel=medio
 - index.html?nivel=dificil
@@ -29,12 +53,21 @@ Abra diretamente um nível adicionando à URL:
 
 PASTAS
 ------
-- index.html ........ inicia o jogo
-- bandeiras/ ........ 163 imagens locais
-- css/estilo.css .... interface e animações
-- js/paises.js ...... lista de países
-- js/jogo.js ........ regras e pontuação
-- js/musica.js ...... música offline
-- fontes/ ........... Fredoka e Nunito
+- index.html ............ inicia o jogo
+- bandeiras/ ............ 163 imagens locais
+- css/estilo.css ........ interface e animações
+- js/paises.js .......... lista de países
+- js/curiosidades.js .... continente, capital e curiosidade de cada país
+- js/quiz.js ............ perguntas, pontuação, ajudas
+- js/mapa.js ............ Mapa de Aventura
+- js/passaporte.js ...... carimbos e conquistas
+- js/memoria.js ......... jogo da memória
+- js/relampago.js ....... jogo Relâmpago
+- js/audio.js ........... efeitos sonoros
+- js/musica.js .......... música offline
+- js/voz.js ............. leitura em voz alta
+- js/efeitos.js ......... confete, partículas e animações
+- js/app.js ............. menus e preferências
+- fontes/ ............... Fredoka e Nunito
 
 Boa aventura, superexplorador! 🚩

@@ -19,10 +19,15 @@ if ($css -notmatch ':focus-visible') { throw 'O CSS não define foco visível.' 
     if ($css -notmatch [regex]::Escape($_)) { throw "Estilo de mecânica ausente: $_" }
 }
 
-$gamePath = Join-Path $root 'js\jogo.js'
-if (-not (Test-Path -LiteralPath $gamePath)) { throw 'Lógica do jogo ainda não implementada.' }
-$gameSource = Get-Content -Raw -LiteralPath $gamePath
-@('function lerRecordePontos', 'function calcularPontos', 'vb_pontos_', "addEventListener('error'", 'Resposta certa', 'Sua escolha') | ForEach-Object {
+@('tela-niveis', 'tela-mapa', 'tela-passaporte', 'tela-minijogos', 'tela-memoria', 'tela-relampago', 'btn-pequeno', 'btn-lupa', 'btn-dica', 'curiosidade', 'btn-proxima', 'efeitos', 'transicao') | ForEach-Object {
+    if ($html -notmatch ('id="' + [regex]::Escape($_) + '"')) { throw "ID da versão profissional ausente: $_" }
+}
+
+$gameSource = @('quiz.js', 'app.js', 'progresso.js') | ForEach-Object {
+    Get-Content -Raw -LiteralPath (Join-Path $root "js\$_")
+}
+$gameSource = $gameSource -join "`n"
+@('function calcularPontos', 'vb_pontos_', "addEventListener('error'", 'Resposta certa', 'Sua escolha', 'vb_carimbos', 'vb_campanha') | ForEach-Object {
     if ($gameSource -notmatch [regex]::Escape($_)) { throw "Comportamento obrigatório ausente: $_" }
 }
 
