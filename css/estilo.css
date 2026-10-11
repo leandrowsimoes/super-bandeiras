@@ -286,3 +286,70 @@ h1 span{display:block;color:var(--vermelho);transform:rotate(-2deg);text-shadow:
 /* ---------- Ajustes de tamanho ---------- */
 @media(min-width:700px){.modos{grid-template-columns:repeat(3,1fr)}.modo-minijogos{grid-column:auto;flex-direction:column;gap:2px}.modo-minijogos .modo-textos{text-align:center}.lista-minijogos{grid-template-columns:1fr 1fr}.curiosidade{grid-template-columns:auto 1fr auto}.btn-proxima{grid-column:auto}}
 @media(max-width:480px){.modos{gap:10px;margin-top:14px}.btn-modo{padding:12px 8px;border-radius:20px}.modo-emoji{font-size:1.9rem}.btn-modo strong{font-size:1.15rem}.modo-mapa strong{font-size:1.45rem}.interruptor-textos small{display:none}.ajudas{gap:6px}.btn-ajuda{width:44px;height:44px;font-size:1.15rem}.balao{font-size:.85rem;padding:7px 10px}.bandeira-opcao{max-height:64px}.no-fase{width:66px;height:66px}.trilha:before{top:58px}.memoria-grade{gap:7px}.carta-verso,.carta-frente{border-radius:12px;border-width:2px}.aviao-faixa{top:6%}.aviao{font-size:2rem}.faixa-aviao{font-size:.8rem}}
+
+/* ============================================================
+   Passada de design — ícones próprios, girlanda de bandeiras,
+   cenário com mais profundidade, legibilidade e telas de jogo
+   que cabem no celular sem rolar
+   ============================================================ */
+
+/* ---------- Ícones em SVG (no lugar dos emojis do sistema) ---------- */
+.ico{display:block;width:30px;height:30px;overflow:visible}
+.btn-icone{position:relative}
+.btn-icone.mudo .ondas{display:none}
+.ico.modo-emoji{width:46px;height:46px;transition:.2s transform}
+.modo-mapa .ico.modo-emoji{width:58px;height:58px}
+.btn-modo:hover .ico.modo-emoji{transform:scale(1.15) rotate(-8deg)}
+
+/* ---------- Girlanda de bandeiras reais na tela inicial ---------- */
+.tela-inicio{padding-top:50px}
+.bandeirinhas{position:absolute;top:-10px;left:50%;z-index:0;display:flex;justify-content:space-evenly;align-items:flex-start;box-sizing:border-box;width:100vw;height:80px;padding:0 max(0px,calc((100vw - 760px) / 2));transform:translateX(-50%);pointer-events:none}
+.fio{position:absolute;left:0;top:0;width:100%;height:40px;overflow:visible}
+.bandeirinha{position:relative;top:var(--y,16px);width:38px;height:30px;padding:2px 2px 0;background:var(--tinta);clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%);transform-origin:50% 0;animation:balancar-fio 3.4s ease-in-out infinite;animation-delay:calc(var(--n,0) * -.45s)}
+.bandeirinha img{display:block;width:100%;height:100%;object-fit:cover;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%)}
+.bandeirinha:nth-child(2){--y:10px;--n:1}.bandeirinha:nth-child(3){--y:13px;--n:2}.bandeirinha:nth-child(4){--y:15px;--n:3}.bandeirinha:nth-child(5){--y:16.5px;--n:4}.bandeirinha:nth-child(6){--y:17px;--n:5}.bandeirinha:nth-child(7){--y:16.5px;--n:6}.bandeirinha:nth-child(8){--y:15px;--n:7}.bandeirinha:nth-child(9){--y:13px;--n:8}.bandeirinha:nth-child(10){--y:10px;--n:9}
+@keyframes balancar-fio{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+
+/* ---------- Cenário: céu com horizonte, sol com raios, morros com luz ---------- */
+body{background:linear-gradient(180deg,#a6e5ff 0,var(--ceu) 40%,#e6f8ff 66%,#fff3c4 70%,#8ee39b 70.1%)}
+.sol{box-shadow:none}
+.sol:before{content:'';position:absolute;inset:-36px;z-index:-1;border-radius:50%;background:repeating-conic-gradient(rgba(255,216,77,.6) 0 7deg,transparent 7deg 22.5deg);-webkit-mask:radial-gradient(circle,transparent 0 58%,#000 60%,transparent 100%);mask:radial-gradient(circle,transparent 0 58%,#000 60%,transparent 100%);animation:girar-raios 60s linear infinite}
+@keyframes girar-raios{to{transform:rotate(360deg)}}
+.morro-a{background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.28),transparent 52%) #54cf7a}
+.morro-b{background:radial-gradient(circle at 62% 24%,rgba(255,255,255,.28),transparent 52%) #6bd68a}
+
+/* ---------- Mapa: continente trancado fica cinza e sólido, sem transparência ---------- */
+.continente-mapa.trancado{background:#dfe6ee;filter:grayscale(1);opacity:1;color:#5b7090}
+
+/* ---------- Legibilidade: textos pequenos ficam maiores para quem está aprendendo a ler ---------- */
+.contador{font-size:.98rem}
+.nivel-textos small,.btn-seletor small{font-size:.88rem}
+.btn-modo small,.minijogo-recorde,.btn-minijogo small{font-size:.88rem}
+.interruptor-textos small{font-size:.84rem}
+.nivel-recorde{font-size:.86rem}
+.feedback-resposta{font-size:.8rem}
+.carimbo-nome{font-size:.78rem}
+.curiosidade-textos small,.conquista-textos small,.pagina-passaporte h3 small{font-size:.9rem}
+
+/* ---------- Celular: a partida inteira cabe na tela ---------- */
+@media(max-width:480px){
+  .sol{width:70px;height:70px;top:-14px;left:-26px}
+  .ico.modo-emoji{width:38px;height:38px}
+  .modo-mapa .ico.modo-emoji{width:48px;height:48px}
+  .bandeirinha{width:34px;height:27px}
+  .bandeirinhas{top:46px}
+  .tela-inicio{padding-top:102px}
+  #tela-jogo .barra{margin:46px 0 8px;padding:7px}
+  #tela-jogo .progresso{margin:8px 0 2px}
+  #tela-jogo .contador{margin:2px 0 8px}
+  #tela-jogo .carta{padding:12px}
+  #tela-jogo .quadro-bandeira{min-height:128px;padding:10px}
+  #tela-jogo .quadro-bandeira img{max-height:120px}
+  #tela-jogo .barra-bonus{margin:10px 0 0}
+  #tela-jogo .pergunta{margin:10px 0 0;font-size:1.35rem}
+  #tela-jogo .fala-mascote{margin:6px 0 8px}
+  #tela-jogo .respostas{gap:8px}
+  #tela-jogo .btn-resposta{min-height:50px;padding:5px 12px 5px 7px}
+  #tela-jogo .modo-bandeira .btn-resposta{padding:6px}
+  #tela-jogo .bandeira-opcao{max-height:52px}
+}

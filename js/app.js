@@ -31,7 +31,7 @@
   var btnMusica = $('btn-musica');
 
   function atualizarBotaoSom() {
-    btnSom.textContent = Sons.ligado() ? '🔊' : '🔇';
+    btnSom.classList.toggle('mudo', !Sons.ligado());
     btnSom.setAttribute('aria-label', Sons.ligado() ? 'Desligar os efeitos e a voz' : 'Ligar os efeitos e a voz');
   }
 
