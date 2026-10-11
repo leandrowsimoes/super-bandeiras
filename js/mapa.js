@@ -18,8 +18,6 @@
   var totalEstrelasEl = document.getElementById('mapa-estrelas');
   var recemLiberada = null;   // id da fase que acabou de ser liberada (para animar)
 
-  function icone(id) { return '<svg class="ico" aria-hidden="true"><use href="#i-' + id + '"/></svg>'; }
-
   function idFase(continente, fase) { return continente + '-' + (fase + 1); }
 
   function paisesDo(continente) {
@@ -76,7 +74,7 @@
 
       var titulo = document.createElement('h3');
       titulo.innerHTML = '<span class="continente-emoji"></span><span class="continente-nome"></span>';
-      titulo.querySelector('.continente-emoji').innerHTML = icone(liberadoContinente ? continente.id : 'cadeado');
+      titulo.querySelector('.continente-emoji').innerHTML = Icone.html(liberadoContinente ? continente.id : 'cadeado');
       titulo.querySelector('.continente-nome').textContent = continente.nome;
       bloco.appendChild(titulo);
 
@@ -98,7 +96,7 @@
         no.setAttribute('aria-label', continente.nome + ', fase ' + (f + 1) + (aberta ? ', ' + estrelas + ' estrelas' : ', trancada'));
         no.innerHTML = '<span class="no-numero"></span><span class="no-estrelas"></span>';
         if (aberta) no.querySelector('.no-numero').textContent = String(f + 1);
-        else no.querySelector('.no-numero').innerHTML = icone('cadeado');
+        else no.querySelector('.no-numero').innerHTML = Icone.html('cadeado');
         if (aberta) desenharEstrelas(no.querySelector('.no-estrelas'), estrelas);
         if (id === recemLiberada) no.classList.add('liberando');
         (function (cont, fase) {
@@ -116,7 +114,7 @@
       var aviao = document.createElement('span');
       aviao.className = 'aviao-mapa';
       aviao.setAttribute('aria-hidden', 'true');
-      aviao.innerHTML = icone('aviao');
+      aviao.innerHTML = Icone.html('aviao');
       noAtual.appendChild(aviao);
     }
     totalEstrelasEl.innerHTML = '<svg class="ico ico-texto" aria-hidden="true"><use href="#i-estrela"/></svg> ' + total + ' / ' + fases.length * 3;
@@ -152,7 +150,8 @@
       perguntas: perguntas,
       grupo: paisesDo(continente.id),
       modo: MODO_DA_FASE[fase],
-      titulo: continente.emoji + ' ' + continente.nome + ' · ' + (fase + 1),
+      titulo: continente.nome + ' · ' + (fase + 1),
+      icone: continente.id,
       aoSair: mostrar,
       aoTerminar: function (r) { terminarFase(continente, fase, id, r); }
     });

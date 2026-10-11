@@ -10,10 +10,10 @@
 
   var TOTAL_PERGUNTAS = 10;
   var NIVEIS = {
-    facil:      { nome: 'Fácil',      emoji: '🌱' },
-    medio:      { nome: 'Médio',      emoji: '🌍' },
-    dificil:    { nome: 'Difícil',    emoji: '🌋' },
-    impossivel: { nome: 'Impossível', emoji: '👽' }
+    facil:      { nome: 'Fácil',      icone: 'broto' },
+    medio:      { nome: 'Médio',      icone: 'globo' },
+    dificil:    { nome: 'Difícil',    icone: 'vulcao' },
+    impossivel: { nome: 'Impossível', icone: 'alien' }
   };
 
   function $(id) { return document.getElementById(id); }
@@ -138,7 +138,8 @@
       perguntas: Quiz.embaralhar(grupo).slice(0, TOTAL_PERGUNTAS),
       grupo: grupo,
       modo: modo,
-      titulo: NIVEIS[nivel].emoji + ' ' + NIVEIS[nivel].nome,
+      titulo: NIVEIS[nivel].nome,
+      icone: NIVEIS[nivel].icone,
       instantaneo: instantaneo,
       aoSair: mostrarNiveis,
       aoTerminar: function (r) {

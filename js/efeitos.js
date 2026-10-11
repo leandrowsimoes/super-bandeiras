@@ -173,13 +173,13 @@
 
   // Faixa que desce do topo (conquistas, ajudas ganhas).
   var areaFaixas = document.getElementById('faixas');
-  function faixa(emoji, titulo, texto) {
+  function faixa(idIcone, titulo, texto) {
     var el = document.createElement('div');
     el.className = 'faixa';
     el.setAttribute('role', 'status');
     var icone = document.createElement('span');
     icone.className = 'faixa-emoji';
-    icone.textContent = emoji;
+    icone.innerHTML = Icone.html(idIcone);
     var textos = document.createElement('span');
     textos.className = 'faixa-textos';
     var forte = document.createElement('strong');

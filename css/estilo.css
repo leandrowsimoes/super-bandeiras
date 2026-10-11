@@ -362,3 +362,10 @@ body{background:linear-gradient(180deg,#a6e5ff 0,var(--ceu) 40%,#e6f8ff 66%,#fff
 .aviao-mapa{display:block;width:38px;height:38px;animation-name:voar-mapa-svg}
 .aviao-mapa .ico{width:100%;height:100%}
 @keyframes voar-mapa-svg{0%,100%{transform:translate(-50%,0) rotate(-12deg)}50%{transform:translate(-50%,-7px) rotate(-18deg)}}
+
+/* ---------- Conquistas, faixas, níveis e título da partida ---------- */
+.faixa-emoji{display:grid;place-items:center;width:40px;height:40px}
+.faixa-emoji .ico{width:36px;height:36px}
+.conquista-emoji .ico{width:34px;height:34px}
+.nivel-emoji .ico{width:36px;height:36px}
+.selo-nivel .ico{display:inline-block;width:24px;height:24px;vertical-align:-6px}

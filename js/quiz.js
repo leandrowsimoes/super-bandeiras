@@ -202,7 +202,7 @@
 
   // ---------- Montagem ----------
   // opcoes: { perguntas: [pais], grupo: [pais], modo: 'pais'|'bandeira',
-  //           titulo, aoTerminar(resultado), aoSair() }
+  //           titulo, icone (id opcional), aoTerminar(resultado), aoSair() }
   function iniciar(opcoes) {
     config = opcoes;
     var pequeno = Progresso.pequeno();
@@ -227,7 +227,8 @@
         return { pais: pais, opcoes: embaralhar([pais].concat(outros)) };
       })
     };
-    seloNivelEl.textContent = opcoes.titulo;
+    seloNivelEl.innerHTML = opcoes.icone ? Icone.html(opcoes.icone) + ' ' : '';
+    seloNivelEl.appendChild(document.createTextNode(opcoes.titulo));
     cartaJogo.classList.toggle('modo-bandeira', jogo.modo === 'bandeira');
     atualizarPlacar();
     Telas.mostrar('tela-jogo', { aoTrocar: mostrarPergunta, instantaneo: opcoes.instantaneo });
@@ -413,7 +414,7 @@
       if (jogo.combo === COMBO_MAX) mostrarSuper();
       if (jogo.combo > 0 && jogo.combo % 3 === 0 && jogo.lupas < MAX_LUPAS) {
         jogo.lupas++;
-        Efeitos.faixa('🔍', 'Ganhou uma Lupa!', 'Ela tira respostas erradas.');
+        Efeitos.faixa('lupa', 'Ganhou uma Lupa!', 'Ela tira respostas erradas.');
       }
       Progresso.desbloquear('primeiro-acerto');
       if (jogo.combo >= COMBO_MAX) Progresso.desbloquear('combo-5');

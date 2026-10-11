@@ -70,7 +70,9 @@
     Progresso.CONQUISTAS.forEach(function (c) {
       var tem = obtidas.indexOf(c.id) !== -1;
       var cartao = criar('div', 'conquista' + (tem ? ' obtida' : ''));
-      cartao.appendChild(criar('span', 'conquista-emoji', tem ? c.emoji : '🔒'));
+      var selo = criar('span', 'conquista-emoji');
+      selo.innerHTML = Icone.html(tem ? c.icone : 'cadeado');
+      cartao.appendChild(selo);
       var textos = criar('span', 'conquista-textos');
       textos.appendChild(criar('strong', null, c.nome));
       textos.appendChild(criar('small', null, c.descricao));
