@@ -10,10 +10,10 @@
 
   var TOTAL_PERGUNTAS = 10;
   var NIVEIS = {
-    facil:      { nome: 'Fácil',      emoji: '🌱' },
-    medio:      { nome: 'Médio',      emoji: '🌍' },
-    dificil:    { nome: 'Difícil',    emoji: '🌋' },
-    impossivel: { nome: 'Impossível', emoji: '👽' }
+    facil:      { nome: 'Fácil',      icone: 'broto' },
+    medio:      { nome: 'Médio',      icone: 'globo' },
+    dificil:    { nome: 'Difícil',    icone: 'vulcao' },
+    impossivel: { nome: 'Impossível', icone: 'alien' }
   };
 
   function $(id) { return document.getElementById(id); }
@@ -31,7 +31,7 @@
   var btnMusica = $('btn-musica');
 
   function atualizarBotaoSom() {
-    btnSom.textContent = Sons.ligado() ? '🔊' : '🔇';
+    btnSom.classList.toggle('mudo', !Sons.ligado());
     btnSom.setAttribute('aria-label', Sons.ligado() ? 'Desligar os efeitos e a voz' : 'Ligar os efeitos e a voz');
   }
 
@@ -106,7 +106,8 @@
     var botoes = document.querySelectorAll('[data-recorde]');
     for (var b = 0; b < botoes.length; b++) {
       var recorde = Progresso.lerNumero(chaveRecorde(botoes[b].getAttribute('data-recorde'), modoQuiz));
-      botoes[b].textContent = recorde === null ? '' : '🏆 ' + formatarPontos(recorde);
+      if (recorde === null) botoes[b].textContent = '';
+      else Icone.comTexto(botoes[b], 'trofeu', formatarPontos(recorde), 'ico-texto');
     }
     var seletores = document.querySelectorAll('[data-modo]');
     for (var s = 0; s < seletores.length; s++) {
@@ -138,7 +139,8 @@
       perguntas: Quiz.embaralhar(grupo).slice(0, TOTAL_PERGUNTAS),
       grupo: grupo,
       modo: modo,
-      titulo: NIVEIS[nivel].emoji + ' ' + NIVEIS[nivel].nome,
+      titulo: NIVEIS[nivel].nome,
+      icone: NIVEIS[nivel].icone,
       instantaneo: instantaneo,
       aoSair: mostrarNiveis,
       aoTerminar: function (r) {
@@ -173,8 +175,10 @@
   function mostrarMinijogos() {
     var memoria = Progresso.lerNumero('vb_memoria_' + (Progresso.pequeno() ? 4 : 6));
     var relampago = Progresso.lerNumero('vb_relampago');
-    $('recorde-memoria').textContent = memoria === null ? '' : '🏆 ' + memoria + ' jogadas';
-    $('recorde-relampago').textContent = relampago === null ? '' : '🏆 ' + relampago + ' acertos';
+    if (memoria === null) $('recorde-memoria').textContent = '';
+    else Icone.comTexto($('recorde-memoria'), 'trofeu', memoria + ' jogadas', 'ico-texto');
+    if (relampago === null) $('recorde-relampago').textContent = '';
+    else Icone.comTexto($('recorde-relampago'), 'trofeu', relampago + ' acertos', 'ico-texto');
     Telas.mostrar('tela-minijogos');
   }
 

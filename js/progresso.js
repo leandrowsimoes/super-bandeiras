@@ -9,19 +9,19 @@
   'use strict';
 
   var CONQUISTAS = [
-    { id: 'primeiro-acerto', emoji: '🎯', nome: 'Primeiro acerto', descricao: 'Acerte sua primeira bandeira.' },
-    { id: 'combo-5', emoji: '🔥', nome: 'Pegando fogo', descricao: 'Faça um combo de 5 acertos seguidos.' },
-    { id: 'perfeito', emoji: '🏆', nome: 'Rodada perfeita', descricao: 'Acerte todas as bandeiras de uma rodada.' },
-    { id: 'carimbos-10', emoji: '📘', nome: 'Colecionador', descricao: 'Junte 10 carimbos no passaporte.' },
-    { id: 'carimbos-50', emoji: '🧳', nome: 'Viajante', descricao: 'Junte 50 carimbos no passaporte.' },
-    { id: 'carimbos-100', emoji: '✈️', nome: 'Volta ao mundo', descricao: 'Junte 100 carimbos no passaporte.' },
-    { id: 'carimbos-todos', emoji: '🌍', nome: 'Superexplorador', descricao: 'Carimbe todos os países do jogo!' },
-    { id: 'continente-america', emoji: '🗽', nome: 'Rei das Américas', descricao: 'Complete as Américas no mapa.' },
-    { id: 'continente-europa', emoji: '🏰', nome: 'Cavaleiro da Europa', descricao: 'Complete a Europa no mapa.' },
-    { id: 'continente-africa', emoji: '🦁', nome: 'Leão da África', descricao: 'Complete a África no mapa.' },
-    { id: 'continente-asia', emoji: '🐼', nome: 'Mestre da Ásia', descricao: 'Complete a Ásia no mapa.' },
-    { id: 'continente-oceania', emoji: '🦘', nome: 'Surfista da Oceania', descricao: 'Complete a Oceania no mapa.' },
-    { id: 'memoria', emoji: '🧠', nome: 'Memória de elefante', descricao: 'Termine um jogo da memória.' }
+    { id: 'primeiro-acerto', icone: 'alvo', nome: 'Primeiro acerto', descricao: 'Acerte sua primeira bandeira.' },
+    { id: 'combo-5', icone: 'fogo', nome: 'Pegando fogo', descricao: 'Faça um combo de 5 acertos seguidos.' },
+    { id: 'perfeito', icone: 'trofeu', nome: 'Rodada perfeita', descricao: 'Acerte todas as bandeiras de uma rodada.' },
+    { id: 'carimbos-10', icone: 'passaporte', nome: 'Colecionador', descricao: 'Junte 10 carimbos no passaporte.' },
+    { id: 'carimbos-50', icone: 'mala', nome: 'Viajante', descricao: 'Junte 50 carimbos no passaporte.' },
+    { id: 'carimbos-100', icone: 'aviao', nome: 'Volta ao mundo', descricao: 'Junte 100 carimbos no passaporte.' },
+    { id: 'carimbos-todos', icone: 'globo', nome: 'Superexplorador', descricao: 'Carimbe todos os países do jogo!' },
+    { id: 'continente-america', icone: 'america', nome: 'Rei das Américas', descricao: 'Complete as Américas no mapa.' },
+    { id: 'continente-europa', icone: 'europa', nome: 'Cavaleiro da Europa', descricao: 'Complete a Europa no mapa.' },
+    { id: 'continente-africa', icone: 'africa', nome: 'Leão da África', descricao: 'Complete a África no mapa.' },
+    { id: 'continente-asia', icone: 'asia', nome: 'Mestre da Ásia', descricao: 'Complete a Ásia no mapa.' },
+    { id: 'continente-oceania', icone: 'oceania', nome: 'Surfista da Oceania', descricao: 'Complete a Oceania no mapa.' },
+    { id: 'memoria', icone: 'cerebro', nome: 'Memória de elefante', descricao: 'Termine um jogo da memória.' }
   ];
 
   function lerJSON(chave, padrao) {
@@ -94,7 +94,7 @@
     // Pequeno atraso para a faixa não brigar com o som de acerto.
     setTimeout(function () {
       Sons.tocar('conquista');
-      Efeitos.faixa(conquista.emoji, 'Conquista: ' + conquista.nome, conquista.descricao);
+      Efeitos.faixa(conquista.icone, 'Conquista: ' + conquista.nome, conquista.descricao);
     }, 500);
     return true;
   }

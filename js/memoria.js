@@ -46,9 +46,9 @@
   }
 
   function atualizarContadores() {
-    jogadasEl.textContent = '👆 ' + estado.jogadas;
+    Icone.comTexto(jogadasEl, 'dedo', String(estado.jogadas), 'ico-texto');
     jogadasEl.setAttribute('aria-label', estado.jogadas + (estado.jogadas === 1 ? ' jogada' : ' jogadas'));
-    paresEl.textContent = '✅ ' + estado.achados + '/' + estado.pares;
+    Icone.comTexto(paresEl, 'certo', estado.achados + '/' + estado.pares, 'ico-texto');
     paresEl.setAttribute('aria-label', estado.achados + ' de ' + estado.pares + ' pares');
   }
 
@@ -116,7 +116,7 @@
     var recorde = Progresso.salvarRecorde('vb_memoria_' + pares, jogadas, true);
     Progresso.desbloquear('memoria');
     Resultado.mostrar({
-      medalha: estrelas === 3 ? '🧠' : estrelas === 2 ? '🥇' : '🥈',
+      medalha: estrelas === 3 ? 'cerebro' : estrelas === 2 ? 'medalha' : 'medalha-prata',
       titulo: estrelas === 3 ? 'Memória de elefante!' : 'Achou todos os pares!',
       estrelas: estrelas,
       resumo: 'Você achou os ' + pares + ' pares em ' + jogadas + ' jogadas.',

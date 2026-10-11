@@ -176,9 +176,9 @@ var INFO_PAISES = {
 
 // Continentes na ordem da aventura (mapa), com nome para frases de dica.
 var CONTINENTES = [
-  { id: "america", nome: "Américas", onde: "nas Américas", emoji: "🗽" },
-  { id: "europa", nome: "Europa", onde: "na Europa", emoji: "🏰" },
-  { id: "africa", nome: "África", onde: "na África", emoji: "🦁" },
-  { id: "asia", nome: "Ásia", onde: "na Ásia", emoji: "🐼" },
-  { id: "oceania", nome: "Oceania", onde: "na Oceania", emoji: "🦘" }
+  { id: "america", nome: "Américas", onde: "nas Américas" },
+  { id: "europa", nome: "Europa", onde: "na Europa" },
+  { id: "africa", nome: "África", onde: "na África" },
+  { id: "asia", nome: "Ásia", onde: "na Ásia" },
+  { id: "oceania", nome: "Oceania", onde: "na Oceania" }
 ];

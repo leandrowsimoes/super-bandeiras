@@ -38,6 +38,15 @@ RECURSOS
   neste navegador.
 - 🎵 liga ou desliga a música.
 - 🔊 liga ou desliga efeitos e leitura em voz alta.
+- Qualidade da voz: a leitura usa as vozes do seu navegador e do seu
+  sistema, então o som muda de aparelho para aparelho. O jogo escolhe
+  sozinho a melhor voz em português que encontrar. No Microsoft Edge
+  (Windows) as vozes "Natural", como a Francisca, soam bem mais
+  naturais; por isso, se puder, jogue pelo Edge. No Chrome, aparece a
+  "Google português do Brasil" (pode precisar de internet). No Android,
+  instale/atualize o "Serviço de fala do Google" em português. No Mac e
+  no iPhone, a voz Luciana (baixada em Ajustes > Acessibilidade > Fala)
+  é a melhor opção.
 - As teclas 1, 2, 3 e 4 escolhem as alternativas; Enter avança.
 - No Relâmpago: tecla 1 (ou S) = Sim, tecla 2 (ou N) = Não.
 - O visual se adapta a celulares e computadores.

@@ -32,11 +32,11 @@
   function avaliar(acertos, total) {
     var fracao = total ? acertos / total : 0;
     var estrelas = fracao >= 0.9 ? 3 : fracao >= 0.6 ? 2 : fracao >= 0.3 ? 1 : 0;
-    if (acertos === total) return { medalha: '🏆', titulo: 'PERFEITO! Você é um campeão!', estrelas: 3 };
-    if (fracao >= 0.7) return { medalha: '🥇', titulo: 'Incrível, grande explorador!', estrelas: estrelas };
-    if (fracao >= 0.5) return { medalha: '🥈', titulo: 'Muito bem, viajante!', estrelas: estrelas };
-    if (fracao >= 0.3) return { medalha: '🥉', titulo: 'Boa! Continue explorando!', estrelas: estrelas };
-    return { medalha: '🌱', titulo: 'Não desista! Tente de novo!', estrelas: estrelas };
+    if (acertos === total) return { medalha: 'trofeu', titulo: 'PERFEITO! Você é um campeão!', estrelas: 3 };
+    if (fracao >= 0.7) return { medalha: 'medalha', titulo: 'Incrível, grande explorador!', estrelas: estrelas };
+    if (fracao >= 0.5) return { medalha: 'medalha-prata', titulo: 'Muito bem, viajante!', estrelas: estrelas };
+    if (fracao >= 0.3) return { medalha: 'medalha-bronze', titulo: 'Boa! Continue explorando!', estrelas: estrelas };
+    return { medalha: 'broto', titulo: 'Não desista! Tente de novo!', estrelas: estrelas };
   }
 
   function mostrarCarimbos(codigos, inicio) {
@@ -79,7 +79,7 @@
     cancelarCoreografia();
     acoes = { repetir: opcoes.aoRepetir, voltar: opcoes.aoVoltar };
 
-    medalhaEl.textContent = opcoes.medalha;
+    medalhaEl.innerHTML = Icone.html(opcoes.medalha);
     tituloEl.textContent = opcoes.titulo;
     resumoEl.textContent = opcoes.resumo;
     recordeEl.hidden = true;

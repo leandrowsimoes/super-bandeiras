@@ -74,7 +74,7 @@
 
       var titulo = document.createElement('h3');
       titulo.innerHTML = '<span class="continente-emoji"></span><span class="continente-nome"></span>';
-      titulo.querySelector('.continente-emoji').textContent = liberadoContinente ? continente.emoji : '🔒';
+      titulo.querySelector('.continente-emoji').innerHTML = Icone.html(liberadoContinente ? continente.id : 'cadeado');
       titulo.querySelector('.continente-nome').textContent = continente.nome;
       bloco.appendChild(titulo);
 
@@ -95,7 +95,8 @@
         no.setAttribute('data-fase', id);
         no.setAttribute('aria-label', continente.nome + ', fase ' + (f + 1) + (aberta ? ', ' + estrelas + ' estrelas' : ', trancada'));
         no.innerHTML = '<span class="no-numero"></span><span class="no-estrelas"></span>';
-        no.querySelector('.no-numero').textContent = aberta ? String(f + 1) : '🔒';
+        if (aberta) no.querySelector('.no-numero').textContent = String(f + 1);
+        else no.querySelector('.no-numero').innerHTML = Icone.html('cadeado');
         if (aberta) desenharEstrelas(no.querySelector('.no-estrelas'), estrelas);
         if (id === recemLiberada) no.classList.add('liberando');
         (function (cont, fase) {
@@ -113,10 +114,10 @@
       var aviao = document.createElement('span');
       aviao.className = 'aviao-mapa';
       aviao.setAttribute('aria-hidden', 'true');
-      aviao.textContent = '✈️';
+      aviao.innerHTML = Icone.html('aviao');
       noAtual.appendChild(aviao);
     }
-    totalEstrelasEl.textContent = '⭐ ' + total + ' / ' + fases.length * 3;
+    totalEstrelasEl.innerHTML = '<svg class="ico ico-texto" aria-hidden="true"><use href="#i-estrela"/></svg> ' + total + ' / ' + fases.length * 3;
   }
 
   function mostrar() {
@@ -149,7 +150,8 @@
       perguntas: perguntas,
       grupo: paisesDo(continente.id),
       modo: MODO_DA_FASE[fase],
-      titulo: continente.emoji + ' ' + continente.nome + ' · ' + (fase + 1),
+      titulo: continente.nome + ' · ' + (fase + 1),
+      icone: continente.id,
       aoSair: mostrar,
       aoTerminar: function (r) { terminarFase(continente, fase, id, r); }
     });
@@ -178,7 +180,7 @@
     }
 
     Resultado.mostrar({
-      medalha: passou ? avaliacao.medalha : '🌱',
+      medalha: passou ? avaliacao.medalha : 'broto',
       titulo: passou ? avaliacao.titulo : 'Quase lá! Tente de novo!',
       estrelas: estrelas,
       pontos: r.pontos,
@@ -187,7 +189,7 @@
       novosCarimbos: r.novosCarimbos,
       textoRepetir: 'Jogar de novo',
       aoRepetir: function () { iniciarFase(continente, fase); },
-      textoVoltar: 'Voltar ao mapa 🗺️',
+      textoVoltar: 'Voltar ao mapa',
       aoVoltar: mostrar
     });
   }
