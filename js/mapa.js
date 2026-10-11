@@ -18,6 +18,8 @@
   var totalEstrelasEl = document.getElementById('mapa-estrelas');
   var recemLiberada = null;   // id da fase que acabou de ser liberada (para animar)
 
+  function icone(id) { return '<svg class="ico" aria-hidden="true"><use href="#i-' + id + '"/></svg>'; }
+
   function idFase(continente, fase) { return continente + '-' + (fase + 1); }
 
   function paisesDo(continente) {
@@ -74,7 +76,7 @@
 
       var titulo = document.createElement('h3');
       titulo.innerHTML = '<span class="continente-emoji"></span><span class="continente-nome"></span>';
-      titulo.querySelector('.continente-emoji').textContent = liberadoContinente ? continente.emoji : '🔒';
+      titulo.querySelector('.continente-emoji').innerHTML = icone(liberadoContinente ? continente.id : 'cadeado');
       titulo.querySelector('.continente-nome').textContent = continente.nome;
       bloco.appendChild(titulo);
 
@@ -95,7 +97,8 @@
         no.setAttribute('data-fase', id);
         no.setAttribute('aria-label', continente.nome + ', fase ' + (f + 1) + (aberta ? ', ' + estrelas + ' estrelas' : ', trancada'));
         no.innerHTML = '<span class="no-numero"></span><span class="no-estrelas"></span>';
-        no.querySelector('.no-numero').textContent = aberta ? String(f + 1) : '🔒';
+        if (aberta) no.querySelector('.no-numero').textContent = String(f + 1);
+        else no.querySelector('.no-numero').innerHTML = icone('cadeado');
         if (aberta) desenharEstrelas(no.querySelector('.no-estrelas'), estrelas);
         if (id === recemLiberada) no.classList.add('liberando');
         (function (cont, fase) {
@@ -113,10 +116,10 @@
       var aviao = document.createElement('span');
       aviao.className = 'aviao-mapa';
       aviao.setAttribute('aria-hidden', 'true');
-      aviao.textContent = '✈️';
+      aviao.innerHTML = icone('aviao');
       noAtual.appendChild(aviao);
     }
-    totalEstrelasEl.textContent = '⭐ ' + total + ' / ' + fases.length * 3;
+    totalEstrelasEl.innerHTML = '<svg class="ico ico-texto" aria-hidden="true"><use href="#i-estrela"/></svg> ' + total + ' / ' + fases.length * 3;
   }
 
   function mostrar() {
@@ -187,7 +190,7 @@
       novosCarimbos: r.novosCarimbos,
       textoRepetir: 'Jogar de novo',
       aoRepetir: function () { iniciarFase(continente, fase); },
-      textoVoltar: 'Voltar ao mapa 🗺️',
+      textoVoltar: 'Voltar ao mapa',
       aoVoltar: mostrar
     });
   }

@@ -353,3 +353,12 @@ body{background:linear-gradient(180deg,#a6e5ff 0,var(--ceu) 40%,#e6f8ff 66%,#fff
   #tela-jogo .modo-bandeira .btn-resposta{padding:6px}
   #tela-jogo .bandeira-opcao{max-height:52px}
 }
+
+/* ---------- Mapa: ícones SVG ---------- */
+.ico-titulo{display:inline-block;width:28px;height:28px;vertical-align:-6px}
+.ico-texto{display:inline-block;width:20px;height:20px;vertical-align:-4px}
+.continente-emoji .ico{width:38px;height:38px}
+.no-numero .ico{width:30px;height:30px;margin:0 auto}
+.aviao-mapa{display:block;width:38px;height:38px;animation-name:voar-mapa-svg}
+.aviao-mapa .ico{width:100%;height:100%}
+@keyframes voar-mapa-svg{0%,100%{transform:translate(-50%,0) rotate(-12deg)}50%{transform:translate(-50%,-7px) rotate(-18deg)}}
