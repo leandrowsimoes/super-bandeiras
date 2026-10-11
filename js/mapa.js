@@ -180,7 +180,7 @@
     }
 
     Resultado.mostrar({
-      medalha: passou ? avaliacao.medalha : '🌱',
+      medalha: passou ? avaliacao.medalha : 'broto',
       titulo: passou ? avaliacao.titulo : 'Quase lá! Tente de novo!',
       estrelas: estrelas,
       pontos: r.pontos,

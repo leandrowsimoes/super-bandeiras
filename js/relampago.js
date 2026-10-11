@@ -40,8 +40,8 @@
       ultimoSegundo: duracao,
       pool: PAISES.filter(function (p) { return p.nivel !== 'impossivel'; })
     };
-    placarEl.textContent = '⚡ 0';
-    tempoEl.textContent = '⏱️ ' + duracao;
+    Icone.comTexto(placarEl, 'raio', '0', 'ico-texto');
+    Icone.comTexto(tempoEl, 'relogio', String(duracao), 'ico-texto');
     barraFill.style.width = '100%';
     Telas.mostrar('tela-relampago', {
       aoTrocar: function () {
@@ -55,7 +55,7 @@
   function tique() {
     var restante = Math.max(0, (estado.fim - performance.now()) / 1000);
     var segundos = Math.ceil(restante);
-    tempoEl.textContent = '⏱️ ' + segundos;
+    Icone.comTexto(tempoEl, 'relogio', String(segundos), 'ico-texto');
     barraFill.style.width = (restante / estado.duracao * 100) + '%';
     barraFill.classList.toggle('acabando', restante <= 5);
     if (segundos < estado.ultimoSegundo) {
@@ -92,7 +92,7 @@
     var acertou = disseSim === estado.verdade;
     if (acertou) {
       estado.pontos++;
-      placarEl.textContent = '⚡ ' + estado.pontos;
+      Icone.comTexto(placarEl, 'raio', String(estado.pontos), 'ico-texto');
       Efeitos.reanimar(placarEl, 'pulsar');
       cartaEl.classList.add('certo');
       Sons.tocar('par');
@@ -120,7 +120,7 @@
     var estrelas = pontos >= 15 ? 3 : pontos >= 10 ? 2 : pontos >= 5 ? 1 : 0;
     var recorde = Progresso.salvarRecorde('vb_relampago', pontos);
     Resultado.mostrar({
-      medalha: '⚡',
+      medalha: 'raio',
       titulo: pontos >= 10 ? 'Rápido como um raio!' : 'Tempo esgotado!',
       estrelas: estrelas,
       resumo: 'Você acertou ' + pontos + (pontos === 1 ? ' vez' : ' vezes') + ' em ' + estado.duracao + ' segundos.',

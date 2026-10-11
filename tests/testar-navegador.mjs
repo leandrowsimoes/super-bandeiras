@@ -63,7 +63,7 @@ try {
 
   await page.locator('#btn-mudar').click();
   await page.waitForSelector('#tela-niveis:not([hidden])');
-  if (!/🏆/.test(await page.locator('[data-recorde="facil"]').textContent())) falhar('Selo de recorde por pontos ausente.');
+  if (!(await page.locator('[data-recorde="facil"] svg').count())) falhar('Selo de recorde por pontos ausente.');
 
   // --- 3. Passaporte mostra os carimbos conquistados ---
   await page.locator('#tela-niveis [data-voltar-inicio]').click();

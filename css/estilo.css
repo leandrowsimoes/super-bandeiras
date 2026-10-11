@@ -374,3 +374,22 @@ body{background:linear-gradient(180deg,#a6e5ff 0,var(--ceu) 40%,#e6f8ff 66%,#fff
 .ico-aba{display:inline-block;width:24px;height:24px;vertical-align:-6px}
 .pagina-passaporte h3 .ico{display:inline-block;width:28px;height:28px;vertical-align:-7px}
 .btn-grande .ico-aba{box-sizing:border-box;padding:3px;border-radius:50%;background:#fff}
+
+/* ---------- Ícones SVG nos últimos lugares com emoji ---------- */
+.aviao{transform:none}
+.aviao .ico{width:46px;height:46px}
+.interruptor-emoji .ico{width:40px;height:40px}
+.seletor-linha{display:flex;align-items:center;gap:6px}
+.seletor-linha .ico{width:28px;height:28px}
+.abc{font-family:Fredoka,sans-serif;font-size:1.25rem}
+.btn-ajuda{display:grid;place-items:center}
+.btn-ajuda .ico{width:28px;height:28px}
+.ico-btn{display:inline-block;width:26px;height:26px;vertical-align:-6px}
+.medalha .ico{width:96px;height:96px;margin:0 auto}
+.novo-recorde .ico-texto{vertical-align:-5px}
+.minijogo-emoji.ico{width:56px;height:56px}
+.btn-fechar .ico{width:22px;height:22px}
+.selo-combo .ico-texto{width:18px;height:18px;vertical-align:-3px}
+.dica-continente .ico-texto{width:22px;height:22px;vertical-align:-6px}
+.nivel-recorde .ico-texto,.minijogo-recorde .ico-texto{width:16px;height:16px;vertical-align:-3px}
+@media(max-width:480px){.barra{gap:8px}.barra .selo-nivel{padding:7px 9px;font-size:.92rem;white-space:nowrap}.selo-nivel .ico{width:20px;height:20px;vertical-align:-4px}}

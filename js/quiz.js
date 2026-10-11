@@ -124,7 +124,7 @@
   }
 
   function atualizarPlacar() {
-    placarEl.textContent = '⭐ ' + formatarPontos(jogo.pontos);
+    Icone.comTexto(placarEl, 'estrela', formatarPontos(jogo.pontos), 'ico-texto');
   }
 
   function atualizarCombo(subiu) {
@@ -132,7 +132,8 @@
       seloComboEl.hidden = true;
       return;
     }
-    seloComboEl.textContent = (jogo.combo >= COMBO_MAX ? '🔥🔥 x' : '🔥 x') + Math.min(jogo.combo, COMBO_MAX);
+    Icone.comTexto(seloComboEl, 'fogo', 'x' + Math.min(jogo.combo, COMBO_MAX), 'ico-texto');
+    if (jogo.combo >= COMBO_MAX) seloComboEl.insertAdjacentHTML('afterbegin', Icone.html('fogo', 'ico-texto'));
     seloComboEl.hidden = false;
     seloComboEl.classList.toggle('quente', jogo.combo >= 3);
     seloComboEl.classList.toggle('super', jogo.combo >= COMBO_MAX);
@@ -190,7 +191,7 @@
     jogo.dicaUsada = true;
     Sons.tocar('boing');
     var continente = CONTINENTES.filter(function (c) { return c.id === info(jogo.perguntas[jogo.indice].pais).continente; })[0];
-    dicaEl.textContent = continente.emoji + ' Fica ' + continente.onde + '!';
+    Icone.comTexto(dicaEl, continente.id, 'Fica ' + continente.onde + '!', 'ico-texto');
     dicaEl.hidden = false;
     Efeitos.reanimar(dicaEl, 'entrar-dica');
     Voz.falar('Dica: fica ' + continente.onde + '.');
@@ -445,7 +446,9 @@
     $('curiosidade-nome').textContent = pais.nome;
     $('curiosidade-capital').textContent = 'Capital: ' + dados.capital;
     $('curiosidade-texto').textContent = textoCuriosidade(pais);
-    btnProxima.textContent = jogo.indice + 1 < jogo.perguntas.length ? 'Próxima ➜' : 'Ver resultado 🏁';
+    var ultima = jogo.indice + 1 >= jogo.perguntas.length;
+    btnProxima.textContent = ultima ? 'Ver resultado ' : 'Próxima ';
+    btnProxima.insertAdjacentHTML('beforeend', Icone.html(ultima ? 'chegada' : 'seta', 'ico-btn'));
     curiosidadeEl.hidden = false;
     Efeitos.reanimar(curiosidadeEl, 'subir');
     btnProxima.focus({ preventScroll: true });
