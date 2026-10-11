@@ -369,3 +369,8 @@ body{background:linear-gradient(180deg,#a6e5ff 0,var(--ceu) 40%,#e6f8ff 66%,#fff
 .conquista-emoji .ico{width:34px;height:34px}
 .nivel-emoji .ico{width:36px;height:36px}
 .selo-nivel .ico{display:inline-block;width:24px;height:24px;vertical-align:-6px}
+
+/* ---------- Passaporte: ícones ---------- */
+.ico-aba{display:inline-block;width:24px;height:24px;vertical-align:-6px}
+.pagina-passaporte h3 .ico{display:inline-block;width:28px;height:28px;vertical-align:-7px}
+.btn-grande .ico-aba{box-sizing:border-box;padding:3px;border-radius:50%;background:#fff}

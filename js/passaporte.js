@@ -30,7 +30,9 @@
       var quantos = paises.filter(function (p) { return obtidos.indexOf(p.codigo) !== -1; }).length;
 
       var pagina = criar('section', 'pagina-passaporte continente-' + continente.id);
-      var titulo = criar('h3', null, continente.emoji + ' ' + continente.nome + ' ');
+      var titulo = criar('h3');
+      titulo.innerHTML = Icone.html(continente.id) + ' ';
+      titulo.appendChild(document.createTextNode(continente.nome + ' '));
       titulo.appendChild(criar('small', null, quantos + ' de ' + paises.length));
       pagina.appendChild(titulo);
 
